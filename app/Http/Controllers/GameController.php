@@ -11,16 +11,44 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+    public function board()
+    {
+        $categories = Category::with('questions')->orderBy('order')->get();
+        return view('game.board', compact('categories'));
+    }
+
     public function index()
     {
         $categories = Category::with('questions')->orderBy('order')->get();
         return view('game.board', compact('categories'));
     }
 
+    public function showQuestion($id)
+    {
+        $question = Question::with('category')->findOrFail($id);
+        return view('game.question', compact('question'));
+    }
+
     public function showSingleQuestion(Question $question)
     {
         $question->load('category');
         return view('game.question', compact('question'));
+    }
+
+    public function rules()
+    {
+        $rules = Settings::get('rules_content', 'Default Jeopardy rules...');
+        return view('game.rules', compact('rules'));
+    }
+
+    public function mainTitle()
+    {
+        $settings = (object) [
+            'title' => Settings::get('main_title', 'JEOPARDY!'),
+            'subtitle' => Settings::get('main_subtitle'),
+            'logo_path' => Settings::get('main_logo'),
+        ];
+        return view('game.main-title', compact('settings'));
     }
 
     public function create()
@@ -51,9 +79,10 @@ class GameController extends Controller
         return view('game.play', compact('game', 'categories', 'answeredQuestionIds'));
     }
 
-    public function showQuestion(Game $game, Question $question)
+    public function answer(Request $request, Game $game)
     {
-        return view('game.question', compact('game', 'question'));
+        // Handle answer submission
+        return redirect()->route('game.play', $game);
     }
 
     public function submitAnswer(Request $request, Game $game, Question $question)
@@ -85,21 +114,5 @@ class GameController extends Controller
     {
         $game->update(['is_active' => false]);
         return view('game.end', compact('game'));
-    }
-    
-    public function showRules()
-    {
-        $rules = Settings::get('rules_content');
-        return view('game.rules', compact('rules'));
-    }
-    
-    public function showMainTitle()
-    {
-        $settings = (object) [
-            'title' => Settings::get('main_title', 'JEOPARDY!'),
-            'subtitle' => Settings::get('main_subtitle'),
-            'logo_path' => Settings::get('main_logo'),
-        ];
-        return view('game.main-title', compact('settings'));
     }
 }
