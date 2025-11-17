@@ -18,7 +18,19 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('categories', 'totalQuestions'));
     }
 
-    public function exportJson()
+    public function settings()
+    {
+        $settings = [
+            'main_title' => Settings::get('main_title', 'JEOPARDY!'),
+            'main_subtitle' => Settings::get('main_subtitle'),
+            'main_logo' => Settings::get('main_logo'),
+            'rules_content' => Settings::get('rules_content'),
+        ];
+        
+        return view('admin.settings', compact('settings'));
+    }
+
+    public function export()
     {
         $data = [
             'categories' => Category::with('questions')->orderBy('order')->get(),
@@ -30,7 +42,7 @@ class AdminController extends Controller
         ], JSON_PRETTY_PRINT);
     }
 
-    public function importJson(Request $request)
+    public function import(Request $request)
     {
         $request->validate([
             'json_file' => 'nullable|file|mimes:json,txt',
@@ -69,34 +81,6 @@ class AdminController extends Controller
         }
 
         return back()->with('success', 'Data imported successfully!');
-    }
-
-    public function reorderCategories(Request $request)
-    {
-        $request->validate([
-            'categories' => 'required|array',
-            'categories.*.id' => 'required|exists:categories,id',
-            'categories.*.order' => 'required|integer',
-        ]);
-
-        foreach ($request->categories as $categoryData) {
-            Category::where('id', $categoryData['id'])
-                ->update(['order' => $categoryData['order']]);
-        }
-
-        return response()->json(['success' => true]);
-    }
-    
-    public function editSettings()
-    {
-        $settings = [
-            'main_title' => Settings::get('main_title', 'JEOPARDY!'),
-            'main_subtitle' => Settings::get('main_subtitle'),
-            'main_logo' => Settings::get('main_logo'),
-            'rules_content' => Settings::get('rules_content'),
-        ];
-        
-        return view('admin.settings', compact('settings'));
     }
     
     public function updateSettings(Request $request)

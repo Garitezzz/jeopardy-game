@@ -18,12 +18,12 @@ Route::get('/rules', [GameController::class, 'rules'])->name('game.rules');
 Route::get('/main-title', [GameController::class, 'mainTitle'])->name('game.mainTitle');
 
 // Admin Routes
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
-    Route::post('/settings', [AdminController::class, 'updateSettings'])->name('admin.settings.update');
-    Route::post('/export', [AdminController::class, 'export'])->name('admin.export');
-    Route::post('/import', [AdminController::class, 'import'])->name('admin.import');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
+    Route::post('/settings', [AdminController::class, 'updateSettings'])->name('settings.update');
+    Route::post('/export', [AdminController::class, 'export'])->name('export');
+    Route::post('/import', [AdminController::class, 'import'])->name('import');
     
     // Category Routes
     Route::resource('categories', CategoryController::class);

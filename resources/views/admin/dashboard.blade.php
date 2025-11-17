@@ -29,8 +29,8 @@
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">+ Add Category</a>
         <a href="{{ route('admin.questions.create') }}" class="btn btn-success">+ Add Question</a>
         <a href="{{ route('admin.questions.index') }}" class="btn" style="background: #16a085; color: white;">📋 View All Questions</a>
-        <a href="{{ route('admin.settings.edit') }}" class="btn" style="background: #9b59b6; color: white;">⚙️ Game Settings</a>
-        <a href="{{ route('game.index') }}" class="btn btn-warning">🎮 View Game Board</a>
+        <a href="{{ route('admin.settings') }}" class="btn" style="background: #9b59b6; color: white;">⚙️ Game Settings</a>
+        <a href="{{ route('game.board') }}" class="btn btn-warning">🎮 View Game Board</a>
         <a href="{{ route('admin.export') }}" class="btn btn-secondary">📥 Export JSON</a>
     </div>
 </div>

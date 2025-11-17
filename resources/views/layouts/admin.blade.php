@@ -321,8 +321,8 @@
                     <li><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">📊 Dashboard</a></li>
                     <li><a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">📁 Categories</a></li>
                     <li><a href="{{ route('admin.questions.index') }}" class="{{ request()->routeIs('admin.questions.*') ? 'active' : '' }}">❓ Questions</a></li>
-                    <li><a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">⚙️ Settings</a></li>
-                    <li><a href="{{ route('game.index') }}">🎮 View Game Board</a></li>
+                    <li><a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">⚙️ Settings</a></li>
+                    <li><a href="{{ route('game.board') }}">🎮 View Game Board</a></li>
                     <li><a href="{{ route('admin.export') }}">📥 Export Data</a></li>
                 </ul>
             </nav>
