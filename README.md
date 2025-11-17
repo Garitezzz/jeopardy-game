@@ -207,7 +207,6 @@ This project is open-sourced software licensed under the [MIT license](https://o
 
 - Built with [Laravel](https://laravel.com) - The PHP Framework for Web Artisans
 - Inspired by the classic Jeopardy! game show
-- Sound effects for enhanced gameplay experience
 
 ---
 
