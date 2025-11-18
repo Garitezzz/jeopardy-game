@@ -1,3 +1,9 @@
+{{--
+    Questions Index View
+    
+    List all questions grouped by category.
+    Provides actions to create, edit, and delete questions.
+--}}
 @extends('layouts.admin')
 
 @section('title', 'Questions')

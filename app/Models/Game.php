@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * Game Model
+ * 
+ * Represents a Jeopardy game session for tracking a single player's progress and score.
+ * Each game can have multiple responses to questions.
+ * 
  * @property int $id
  * @property string $player_name
  * @property int $score
@@ -24,6 +29,11 @@ class Game extends Model
         'is_active' => 'boolean',
     ];
 
+    /**
+     * Get all responses/answers submitted in this game session
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function responses()
     {
         return $this->hasMany(GameResponse::class);

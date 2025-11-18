@@ -1,3 +1,14 @@
+{{--
+    Game Board View
+    
+    Main Jeopardy game board displaying categories and questions.
+    Features:
+    - Dynamic 6-column board layout
+    - Modal question/answer display
+    - 4-player scoreboard with manual score controls
+    - Sound effects for clicks and reveals
+    - LocalStorage persistence for game state
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

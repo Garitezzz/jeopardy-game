@@ -1,3 +1,9 @@
+{{--
+    Create Question View
+    
+    Form for creating a new question with multimedia support.
+    Supports uploading images, videos, and audio for both questions and answers.
+--}}
 @extends('layouts.admin')
 
 @section('title', 'Create Question')

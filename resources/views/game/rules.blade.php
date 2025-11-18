@@ -1,3 +1,8 @@
+{{--
+    Game Rules View
+    
+    Displays Jeopardy game rules and instructions for players.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

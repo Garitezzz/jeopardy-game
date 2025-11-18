@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    /**
+     * Display the admin dashboard with categories and question statistics
+     */
     public function dashboard()
     {
         $categories = Category::with('questions')->withCount('questions')->orderBy('order')->get();
@@ -18,6 +21,9 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('categories', 'totalQuestions'));
     }
 
+    /**
+     * Show the game settings page with current configuration
+     */
     public function settings()
     {
         $settings = [
@@ -30,6 +36,9 @@ class AdminController extends Controller
         return view('admin.settings', compact('settings'));
     }
 
+    /**
+     * Export all categories and questions as JSON file for backup
+     */
     public function export()
     {
         $data = [
@@ -42,6 +51,10 @@ class AdminController extends Controller
         ], JSON_PRETTY_PRINT);
     }
 
+    /**
+     * Import categories and questions from JSON file or pasted JSON code
+     * This will clear all existing data before importing
+     */
     public function import(Request $request)
     {
         $request->validate([
@@ -83,6 +96,10 @@ class AdminController extends Controller
         return back()->with('success', 'Data imported successfully!');
     }
     
+    /**
+     * Update game settings including title, subtitle, logo, and rules
+     * Handles file upload for logo and removes old logo if new one is uploaded
+     */
     public function updateSettings(Request $request)
     {
         $request->validate([

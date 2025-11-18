@@ -1,3 +1,9 @@
+{{--
+    Main Application Layout
+    
+    Base layout template for general game pages.
+    Provides common HTML structure, styles, and scripts.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

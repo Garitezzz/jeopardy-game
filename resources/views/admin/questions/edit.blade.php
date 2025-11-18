@@ -1,3 +1,8 @@
+{{--
+    Edit Question View
+    
+    Form for editing an existing question and its multimedia content.
+--}}
 @extends('layouts.admin')
 
 @section('title', 'Edit Question')

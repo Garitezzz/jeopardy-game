@@ -9,18 +9,29 @@ use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
+    /**
+     * Display a list of all questions grouped by category and sorted by points
+     */
     public function index()
     {
         $questions = Question::with('category')->orderBy('category_id')->orderBy('points')->get();
         return view('admin.questions.index', compact('questions'));
     }
 
+    /**
+     * Show the form to create a new question
+     */
     public function create()
     {
         $categories = Category::orderBy('order')->get();
         return view('admin.questions.create', compact('categories'));
     }
 
+    /**
+     * Store a new question in the database
+     * Handles file uploads for images, videos, and audio files
+     * Supports swapping with existing questions that have the same point value
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -102,12 +113,20 @@ class QuestionController extends Controller
         return redirect()->route('admin.questions.index')->with('success', 'Question created successfully!');
     }
 
+    /**
+     * Show the form to edit an existing question
+     */
     public function edit(Question $question)
     {
         $categories = Category::orderBy('order')->get();
         return view('admin.questions.edit', compact('question', 'categories'));
     }
 
+    /**
+     * Update an existing question in the database
+     * Handles file uploads and removes old files when new ones are uploaded
+     * Supports swapping with existing questions that have the same point value
+     */
     public function update(Request $request, Question $question)
     {
         $request->validate([
@@ -214,6 +233,10 @@ class QuestionController extends Controller
         return redirect()->route('admin.questions.index')->with('success', 'Question updated successfully!');
     }
 
+    /**
+     * Remove the specified question from the database
+     * Also deletes associated image and answer image files from storage
+     */
     public function destroy(Question $question)
     {
         if ($question->image_path) {
@@ -227,6 +250,10 @@ class QuestionController extends Controller
         return redirect()->route('admin.questions.index')->with('success', 'Question deleted successfully!');
     }
     
+    /**
+     * Update the point value of a question via AJAX request
+     * Used for quick point value changes without full form submission
+     */
     public function updatePoints(Request $request, Question $question)
     {
         $request->validate([

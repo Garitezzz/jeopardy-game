@@ -1,3 +1,8 @@
+{{--
+    Create Game Session View
+    
+    Form for creating a new game session with player name input.
+--}}
 @extends('layouts.app')
 
 @section('title', 'Start New Game')

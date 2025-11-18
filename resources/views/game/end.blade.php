@@ -1,3 +1,8 @@
+{{--
+    Game End View
+    
+    Final score display page shown when a game session ends.
+--}}
 @extends('layouts.app')
 
 @section('title', 'Game Over')

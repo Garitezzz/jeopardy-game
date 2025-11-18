@@ -11,36 +11,54 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+    /**
+     * Display the main game board with all categories and questions
+     */
     public function board()
     {
         $categories = Category::with('questions')->orderBy('order')->get();
         return view('game.board', compact('categories'));
     }
 
+    /**
+     * Alternative method to display the game board (same as board method)
+     */
     public function index()
     {
         $categories = Category::with('questions')->orderBy('order')->get();
         return view('game.board', compact('categories'));
     }
 
+    /**
+     * Show a specific question by ID in fullscreen modal view
+     */
     public function showQuestion($id)
     {
         $question = Question::with('category')->findOrFail($id);
         return view('game.question', compact('question'));
     }
 
+    /**
+     * Show a specific question using route model binding
+     */
     public function showSingleQuestion(Question $question)
     {
         $question->load('category');
         return view('game.question', compact('question'));
     }
 
+    /**
+     * Display the game rules page
+     */
     public function rules()
     {
         $rules = Settings::get('rules_content', 'Default Jeopardy rules...');
         return view('game.rules', compact('rules'));
     }
 
+    /**
+     * Display the main title screen with logo and game title
+     */
     public function mainTitle()
     {
         $settings = (object) [
@@ -51,11 +69,17 @@ class GameController extends Controller
         return view('game.main-title', compact('settings'));
     }
 
+    /**
+     * Show the form to create a new game session
+     */
     public function create()
     {
         return view('game.create');
     }
 
+    /**
+     * Store a new game session with player name and initial score
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -71,6 +95,10 @@ class GameController extends Controller
         return redirect()->route('game.play', $game);
     }
 
+    /**
+     * Display the active game board for a specific game session
+     * Shows which questions have been answered
+     */
     public function play(Game $game)
     {
         $categories = Category::with('questions')->get();
@@ -79,12 +107,19 @@ class GameController extends Controller
         return view('game.play', compact('game', 'categories', 'answeredQuestionIds'));
     }
 
+    /**
+     * Handle answer submission (placeholder for future implementation)
+     */
     public function answer(Request $request, Game $game)
     {
         // Handle answer submission
         return redirect()->route('game.play', $game);
     }
 
+    /**
+     * Process and validate a submitted answer for a question
+     * Updates game score if answer is correct
+     */
     public function submitAnswer(Request $request, Game $game, Question $question)
     {
         $request->validate([
@@ -110,6 +145,9 @@ class GameController extends Controller
         ]);
     }
 
+    /**
+     * End the game session and display final score
+     */
     public function end(Game $game)
     {
         $game->update(['is_active' => false]);

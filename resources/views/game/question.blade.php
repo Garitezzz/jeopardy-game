@@ -1,3 +1,9 @@
+{{--
+    Question Display View
+    
+    Fullscreen question and answer display page.
+    Shows category, point value, question text, and supports multimedia content.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

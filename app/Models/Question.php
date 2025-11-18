@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * Question Model
+ * 
+ * Represents a Jeopardy question with its answer, point value, and optional media attachments.
+ * Each question belongs to a category and can have images, videos, or audio files.
+ * 
  * @property int $id
  * @property int $category_id
  * @property string $question
@@ -40,6 +45,11 @@ class Question extends Model
         'audio_path',
     ];
 
+    /**
+     * Get the category that this question belongs to
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);

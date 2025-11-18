@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * Category Model
+ * 
+ * Represents a Jeopardy game category that contains multiple questions.
+ * Categories are displayed as columns on the game board and can be reordered.
+ * 
  * @property int $id
  * @property string $name
  * @property string|null $description
@@ -21,6 +26,11 @@ class Category extends Model
 
     protected $fillable = ['name', 'description', 'order', 'is_final_jeopardy'];
 
+    /**
+     * Get all questions that belong to this category
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function questions()
     {
         return $this->hasMany(Question::class);

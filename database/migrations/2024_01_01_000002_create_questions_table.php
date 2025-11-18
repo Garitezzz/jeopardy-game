@@ -4,8 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Create Questions Table Migration
+ * 
+ * Creates the questions table to store Jeopardy questions with answers.
+ * Each question belongs to a category and has a point value.
+ * Includes cascade delete when parent category is deleted.
+ */
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     * Creates questions table with category relationship, question text, answer, points, and difficulty
+     */
     public function up(): void
     {
         Schema::create('questions', function (Blueprint $table) {
@@ -19,6 +30,10 @@ return new class extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     * Drops the questions table
+     */
     public function down(): void
     {
         Schema::dropIfExists('questions');

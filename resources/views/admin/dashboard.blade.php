@@ -1,36 +1,61 @@
+{{--
+    Admin Dashboard View
+    
+    Main admin panel page showing overview statistics and quick actions.
+    Displays categories, question counts, and navigation to manage content.
+--}}
+{{-- Extend the admin layout template --}}
 @extends('layouts.admin')
 
+{{-- Set the page title shown in browser tab --}}
 @section('title', 'Dashboard')
 
+{{-- Main content section --}}
 @section('content')
+{{-- Page header with title and description --}}
 <div class="page-header">
     <h1>Dashboard</h1>
     <p>Manage your Jeopardy game content</p>
 </div>
 
+{{-- Statistics grid showing key metrics --}}
 <div class="stats-grid">
+    {{-- Card displaying total number of categories --}}
     <div class="stat-card">
         <h3>Total Categories</h3>
+        {{-- Count all categories from collection --}}
         <div class="number">{{ $categories->count() }}</div>
     </div>
+    {{-- Card displaying total number of questions (green border) --}}
     <div class="stat-card" style="border-left-color: #27ae60;">
         <h3>Total Questions</h3>
+        {{-- Display sum of all questions --}}
         <div class="number">{{ $totalQuestions }}</div>
     </div>
+    {{-- Card showing average questions per category (orange border) --}}
     <div class="stat-card" style="border-left-color: #f39c12;">
         <h3>Avg Questions/Category</h3>
+        {{-- Calculate average, avoiding division by zero --}}
         <div class="number">{{ $categories->count() > 0 ? round($totalQuestions / $categories->count(), 1) : 0 }}</div>
     </div>
 </div>
 
+{{-- Card containing quick action buttons --}}
 <div class="card">
     <h2 style="margin-bottom: 20px;">Quick Actions</h2>
+    {{-- Container for action buttons --}}
     <div class="action-buttons">
+        {{-- Link to create new category --}}
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">+ Add Category</a>
+        {{-- Link to create new question --}}
         <a href="{{ route('admin.questions.create') }}" class="btn btn-success">+ Add Question</a>
+        {{-- Link to view all questions list --}}
         <a href="{{ route('admin.questions.index') }}" class="btn" style="background: #16a085; color: white;">📋 View All Questions</a>
+        {{-- Link to game settings page --}}
         <a href="{{ route('admin.settings') }}" class="btn" style="background: #9b59b6; color: white;">⚙️ Game Settings</a>
+        {{-- Link to view player-facing game board --}}
         <a href="{{ route('game.board') }}" class="btn btn-warning">🎮 View Game Board</a>
+        {{-- Link to download JSON export of all data --}}
         <a href="{{ route('admin.export') }}" class="btn btn-secondary">📥 Export JSON</a>
     </div>
 </div>

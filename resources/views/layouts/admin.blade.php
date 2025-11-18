@@ -1,3 +1,9 @@
+{{--
+    Admin Panel Layout
+    
+    Layout template for administrative pages.
+    Includes sidebar navigation, header, and admin-specific styling.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

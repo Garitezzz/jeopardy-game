@@ -1,3 +1,8 @@
+{{--
+    Admin Settings View
+    
+    Game configuration page for managing title, subtitle, logo, and rules.
+--}}
 @extends('layouts.admin')
 
 @section('title', 'Game Settings')

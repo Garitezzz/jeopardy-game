@@ -1,3 +1,8 @@
+{{--
+    Game Play View
+    
+    Active game session view showing the board with answered questions marked.
+--}}
 @extends('layouts.app')
 
 @section('title', 'Play Jeopardy')

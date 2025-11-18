@@ -4,10 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Add Answer Image Field Migration
+ * 
+ * Adds answer_image_path field to questions table.
+ * Allows displaying an image when revealing the answer.
+ */
 return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Adds answer_image_path column to questions table
      */
     public function up(): void
     {
@@ -18,6 +25,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     * Removes answer_image_path column
      */
     public function down(): void
     {

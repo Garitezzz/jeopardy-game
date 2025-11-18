@@ -5,10 +5,17 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Create Settings Table Migration
+ * 
+ * Creates the settings table for storing application configuration as key-value pairs.
+ * Includes default settings for game title, subtitle, logo, and rules.
+ */
 return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Creates settings table and populates with default configuration values
      */
     public function up(): void
     {

@@ -1,3 +1,9 @@
+{{--
+    Laravel Welcome View
+    
+    Default Laravel welcome page (not used in the Jeopardy game).
+    This is the standard Laravel landing page.
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

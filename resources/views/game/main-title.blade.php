@@ -1,3 +1,8 @@
+{{--
+    Main Title Screen View
+    
+    Welcome screen displaying game title, subtitle, and optional logo.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
