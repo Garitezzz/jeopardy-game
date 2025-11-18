@@ -55,7 +55,6 @@ A full-featured, professional Jeopardy game application built with Laravel 11 an
 
 - Reset board to start new game
 - Reset all player scores
-- Overtime/Final Jeopardy button
 - Quick access to admin panel
 - Built-in rules display
 
